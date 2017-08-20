@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cc.messcat.entity.Area" table="area">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="areaId" type="java.lang.Long">
+            <column name="areaID" not-null="true" />
+        </property>
+        <property name="area" type="java.lang.String">
+            <column name="area" length="20" not-null="true" />
+        </property>
+        <property name="fatherId" type="java.lang.Long">
+            <column name="fatherID" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

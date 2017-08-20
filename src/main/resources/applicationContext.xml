@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="locations">
+    		<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!--  mssql 2005数据源配置,主要用于开发测试环境 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=courses;SelectMethod=cursor" />
+		<property name="username" value="sa" />
+		<property name="password" value="kgdoqi..+++" />
+	</bean>
+	-->
+	<!-- mssql 2000数据源配置,主要用于开发测试环境
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.jdbc.sqlserver.SQLServerDriver" />
+		<property name="url" value="jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=courses;SelectMethod=cursor" />
+		<property name="username" value="sa" />
+		<property name="password" value="kgdoqi..+++" />
+	</bean> 
+	 -->
+	 <!-- Mysql数据源配置,主要用于开发测试环境 -->
+	<!-- 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<!-- 指定连接数据库的URL -->
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<!-- 指定连接数据库的用户名 -->
+		<property name="user" value="${jdbc.username}" />
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="${jdbc.password}" />
+		<!-- 指定连接数据库连接池的最大连接数 -->
+		<property name="maxPoolSize" value="20" />
+		<!-- 指定连接数据库连接池的最小连接数 -->
+		<property name="minPoolSize" value="1" />
+		<!-- 指定连接数据库连接池的初始化连接数 -->
+		<property name="initialPoolSize" value="1" />
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<property name="maxIdleTime" value="1800" />
+	</bean>
+	
+	<!-- Hibernate配置 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+			<!-- mssql 2000
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>	
+				-->
+			<!-- mssql mysql -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<!-- 2005
+			<prop key="hibernate.dialect">
+				org.modules.orm.hibernate.SQLServer2005Dialect
+			</prop>
+			<prop key="show_sql">false</prop>
+			-->
+			 <prop key="hibernate.hbm2ddl.auto">none</prop>
+			  <!--  
+			 <prop key="hibernate.cache.use_query_cache">true</prop>
+			 <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+			 <prop key="hibernate.cache.provider_configuration_file_resource_path">/ehcache-hibernate.xml</prop>
+			-->
+			 <prop key="hibernate.show_sql">false</prop>   
+			 <prop key="hibernate.format_sql">false</prop> 
+			 <!-- 释放连接池 -->
+			 <prop key="hibernate.connection.release_mode">auto</prop>
+			</props>
+		</property>
+		
+		<property name="mappingResources">
+			<list>
+				<!-- MCCMS -->
+				<value>cc/messcat/entity/Authorities.hbm.xml</value>
+				<value>cc/messcat/entity/Roles.hbm.xml</value>
+				<value>cc/messcat/entity/RolesAuthorities.hbm.xml</value>
+				<value>cc/messcat/entity/Users.hbm.xml</value>
+				<value>cc/messcat/entity/UsersRoles.hbm.xml</value>
+		
+				<value>cc/messcat/entity/EnterpriseAd.hbm.xml</value>
+				<value>cc/messcat/entity/EnterpriseColumn.hbm.xml</value>
+				<value>cc/messcat/entity/EnterpriseLinks.hbm.xml</value>
+				<value>cc/messcat/entity/EnterpriseNews.hbm.xml</value>
+			 	
+			 	<value>cc/messcat/entity/WebSite.hbm.xml</value>
+			 	<value>cc/messcat/entity/WebSkin.hbm.xml</value>
+			 	<value>cc/messcat/entity/WebSkinColor.hbm.xml</value>
+	 	 		
+	 	 		<value>cc/messcat/entity/BackupHistory.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Standby.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/McParameter.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/McProductInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/PageType.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ProductColumn.hbm.xml</value>
+	 	 		<!-- 二次开发 -->
+	 	 		<value>cc/messcat/entity/ProductType.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Attribute.hbm.xml</value>
+	 	 		
+	 	 		<value>cc/messcat/entity/CartInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/OrderInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/PayOrder.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ProductAttr.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Stock.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Address.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Province.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/City.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Area.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Member.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ProductDrawback.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ParameterSet.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Bonus.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/MemberBonus.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/IntergralInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/CommissionInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/RechargeInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ReportInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/IntegralRule.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/CashInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/Evaluate.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ActivityApply.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/ActivityInvite.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/MemberTicket.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/TicketInfo.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/BonusRecord.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/BankCard.hbm.xml</value>
+	 	 		<value>cc/messcat/entity/AgentOrder.hbm.xml</value>
+			</list>
+		</property> 
+		
+	</bean>
+	
+	<!-- 配置事务管理 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <!-- 事务拦截器-->
+    <bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<!--  事务拦截器bean需要依赖注入一个事务管理器 -->
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<!--  下面定义事务传播属性-->
+			<props>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">readOnly</prop>
+				<prop key="find*">readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+				<prop key="remove*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 进行事务AOP切点切入 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!--  指定对满足哪些bean name的bean自动生成业务代理 -->
+		<property name="beanNames">
+			<!--  下面是所有需要自动创建事务代理的bean-->
+			<list>
+			    <value>*ManagerDao</value>
+			</list>
+			<!--  此处可增加其他需要自动创建事务代理的bean-->
+		</property>
+		<!--  下面定义BeanNameAutoProxyCreator所需的事务拦截器-->
+		<property name="interceptorNames">
+			<list>
+				<!-- 此处可增加其他新的Interceptor -->
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

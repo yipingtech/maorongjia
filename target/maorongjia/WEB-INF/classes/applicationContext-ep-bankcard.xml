@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<!-- dao配置 -->
+    <bean id="bankCardDao" class="cc.messcat.dao.bankcard.BankCardDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+ 	<!-- mgr配置 -->
+    <bean id="bankCardManagerDao" class="cc.messcat.service.bankcard.BankCardManagerDaoImpl">
+        <property name="bankCardDao" ref="bankCardDao"></property>
+         <property name="memberDao" ref="memberDao"></property>
+        <property name="intergralInfoDao" ref="intergralInfoDao"></property>
+        <property name="integralRuleDao" ref="integralRuleDao"></property>
+        <property name="rechargeInfoDao" ref="rechargeInfoDao"></property>
+        <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    
+    <!-- action配置 -->
+    <bean id="bankCardAction" class="cc.messcat.web.bankcard.BankCardAction" scope="prototype">
+         <property name="bankCardManagerDao" ref="bankCardManagerDao"></property>
+         <property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+		<property name="memberManagerDao" ref="memberManagerDao"></property>
+		<property name="orderInfoManagerDao" ref="orderInfoManagerDao"></property>
+		<property name="addressManagerDao" ref="addressManagerDao"></property>
+		<property name="provinceManagerDao" ref="provinceManagerDao"></property>
+        <property name="cityManagerDao" ref="cityManagerDao"></property>
+        <property name="areaManagerDao" ref="areaManagerDao"></property>
+		<property name="intergralInfoManagerDao" ref="intergralInfoManagerDao"></property>
+		<property name="productDrawbackManagerDao" ref="productDrawbackManagerDao"></property>
+		<property name="parameterSetManagerDao" ref="parameterSetManagerDao"></property>
+		<property name="memberBonusManagerDao" ref="memberBonusManagerDao"></property>
+		<property name="rechargeInfoManagerDao" ref="rechargeInfoManagerDao"></property>
+		<property name="evaluateManagerDao" ref="evaluateManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="ticketInfoManagerDao" ref="ticketInfoManagerDao"></property>
+		<property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+
+</beans>

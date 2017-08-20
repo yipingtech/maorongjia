@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<!-- dao配置 -->
+     <bean id="payOrderDao" class="cc.messcat.dao.pay.PayOrderDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+
+ 	<!-- mgr配置 -->
+    <bean id="payOrderManagerDao" class="cc.messcat.service.pay.PayOrderManagerDaoImpl">
+        <property name="payOrderDao" ref="payOrderDao"></property>
+        <property name="orderInfoDao" ref="orderInfoDao"></property>
+        <property name="stockDao" ref="stockDao"></property>
+        <property name="commissionInfoDao" ref="commissionInfoDao"></property>
+        <property name="memberDao" ref="memberDao"></property>
+        <property name="memberBonusDao" ref="memberBonusDao"></property>
+        <property name="intergralInfoDao" ref="intergralInfoDao"></property>
+        <property name="parameterSetDao" ref="parameterSetDao"></property>
+        <property name="bonusRecordDao" ref="bonusRecordDao"></property>
+         <property name="baseDao" ref="baseDao"></property>
+         <property name="cartInfoDao" ref="cartInfoDao"></property>
+         <property name="mcProductInfoDao" ref="mcProductInfoDao"></property>
+    </bean>
+    
+    <!-- action配置 -->
+    <bean id="payOrderAction" class="cc.messcat.web.pay.PayOrderAction" scope="prototype">
+         <property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+         <property name="memberManagerDao" ref="memberManagerDao"></property>
+         <property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+           <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    
+    <bean id="payNotifyAction" class="cc.messcat.wechat.weixin.popular.example.PayNotifyAction" scope="prototype">
+         <property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+         <property name="memberManagerDao" ref="memberManagerDao"></property>
+           <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    
+</beans>

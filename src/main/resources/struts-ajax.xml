@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="json" extends="json-default">
+		
+		<action name="ajaxCheckAgent"
+			class="cc.messcat.web.member.MemberAction">
+			<result name="ajaxSuccess" type="json">
+				<param name="includeProperties">
+					flag,
+					flag2
+				</param>
+			</result>
+			<result name="message" type="json">
+				<param name="includeProperties">
+					flag
+				</param>
+			</result>
+		</action>
+		<action name="ajaxeCheckPassword"
+			class="cc.messcat.web.front.EpMemberCenterAction">
+			<result name="success" type="json">
+				<param name="root">flag</param>
+			</result>
+			<result name="findAllAgentOrder" type="json">
+				<param name="root">agentOrderList</param>
+			</result>
+		</action>
+		
+		<action name="ajaxepSendMessageAction"
+			class="cc.messcat.web.system.SMSAction">
+			<result name="success" type="json">
+				<param name="root">returnMsg</param>
+			</result>
+		</action>
+		
+		<action name="ajaxAddressAction" class="cc.messcat.web.address.AddressAction">
+			<result name="success_city" type="json">
+			   <param name="root">cities</param>
+			</result>
+			<result name="success_area" type="json">
+			   <param name="root">areas</param>
+			</result>
+		</action>
+		
+		<action name="ajaxepShoppingCarAction" class="cc.messcat.web.front.EpShoppingCarAction">
+		    <result name="OperateShoppingCar" type="json">
+			   <param name="includeProperties">
+					flag,
+					amount,
+					price,
+					totalPrice
+				</param>
+			</result>
+			<result name="success" type="json">
+				<param name="root"></param>
+			</result>
+		</action>
+		
+		<action name="ajaxepProductActionFindRepertory"
+				class="cc.messcat.web.front.EpProductAction">
+				<result name="success" type="json">
+					<param name="includeProperties">
+						price,
+						repertory
+					</param>
+				</result>
+				<result name="queryEvaluates" type="json">
+					<param name="root">evaluates</param>
+				</result>
+				<result name="product_list" type="json">
+					<param name="root">productColumns</param>
+				</result>
+		</action>
+		
+		<!-- 上传图片 -->
+		<action name="ajaxepUploadImage"
+			class="cc.messcat.web.collection.McProductInfoAction">
+			<result name="success" type="json">
+				<param name="root">imgurl</param>
+			</result>
+		</action>
+		<!-- 查找属性 -->
+		<action name="ajaxFindAttrByType"
+			class="cc.messcat.web.collection.McProductInfoAction">
+			<result name="success" type="json">
+				<param name="root">attributes</param>
+			</result>
+		</action>
+
+		<!-- 查找类型 -->
+		<action name="ajaxFindProductTypeByTypeName"
+			class="cc.messcat.web.collection.McProductInfoAction">
+			<result name="success" type="json">
+				<param name="root">ProductTypeExist</param>
+			</result>
+		</action>
+
+		<action name="ajaxIndexAction"
+			class="cc.modules.security.AuthorityIntercept">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="collectionAction"
+			class="cc.messcat.web.left.CollectionAction">
+			<result name="success" type="json" />
+		</action>
+		
+		<action name="searchRecordAction" class="alterUrlAction">
+			<result name="success" type="json" />
+		</action>
+		
+		<!-- 用户 -->
+		<action name="ajaxMemberCenterAction"
+			class="cc.messcat.web.front.EpMemberCenterAction">
+			<result name="my-team" type="json">
+				<param name="root">members</param>
+			</result>
+			<result name="toReport" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="drawAddress" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="editShipping" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="applyDrawBack" type="json">
+			</result>
+			<result name="noPayOrder" type="json">
+			   <param name="includeProperties">
+					payOrders1.*,
+					orderInfos1.*,
+					payOrderStatusMap.*,
+					orderInfoStatusMap.*,
+					orderInfoAttrStrMap.*,
+					count1,
+					count2
+				</param>
+			</result>
+			<result name="noReceiveOrder" type="json">
+			   <param name="includeProperties">
+					payOrders2.*,
+					orderInfos2.*,
+					count1,
+					count2
+				</param>
+			</result>
+			<result name="allPayOrder" type="json">
+			   <param name="includeProperties">
+					payOrders3.*,
+					orderInfos3.*,
+					payOrderStatusMap.*,
+					orderInfoStatusMap.*,
+					orderInfoAttrStrMap.*,
+					count1,
+					count2
+				</param>
+			</result>
+			<result name="viewFather" type="json">
+			   <param name="includeProperties">
+					members.*,
+					payOrders1.*,
+					commissionInfos.*,
+					orderInfos1.*,
+					cashDouble
+				</param>
+			</result>
+			<result name="myHongBao" type="json">
+			   <param name="includeProperties">
+					members.*,
+					payOrders1.*,
+					commissionInfos.*,
+					orderInfos1.*,
+					cashDouble
+				</param>
+			</result>
+			<result name="viewIntergra" type="json">
+			   <param name="includeProperties">
+					intergralInfos.*,
+					rechargeInfos.*,
+					cashInfos.*
+				</param>
+			</result>
+			<result name="toTicket" type="json">
+			   <param name="includeProperties">
+					memberTickets.*,
+					count1
+				</param>
+			</result>
+		</action>
+
+        <!-- 活动 -->
+		<action name="ajaxActivityAction"
+			class="cc.messcat.web.front.EpActivityAction">
+			<result name="toGiftsColum" type="json">
+				<param name="root">productColumns</param>
+			</result>
+			<result name="toBindColum" type="json">
+				<param name="root">productColumns</param>
+			</result>
+		</action>
+		
+		<!-- 微信支付 -->
+		<action name="ajaxEpPayAction"
+			class="cc.messcat.web.front.EpPayAction">
+			<result name="goPayByWeChat" type="json">
+				<param name="includeProperties">
+					payType,
+					json,
+					payStatus,
+					payOrderId
+				</param>
+			</result>
+			<result name="payAgent" type="json">
+				<param name="includeProperties">
+					json,
+					payOrderId
+				</param>
+			</result>
+		</action>
+		
+		
+
+		<action name="indexAction"
+			class="cc.messcat.web.front.AjaxIndexAction">
+
+
+			<!-- 详细内容 -->
+			<result name="newsView">/jsp/news.jsp</result>
+
+			<!-- 电子地图 -->
+			<result name="map">/jsp/epmap.jsp</result>
+
+
+
+			<result name="news_more">/jsp/news_more.jsp</result>
+			<result name="news">/jsp/news.jsp</result>
+
+
+		</action>
+		
+		<action name="ajaxAttributeAction"
+			class="cc.messcat.web.product.AttributeAction">
+			
+			<result name="success" type="json">
+				<param name="root">productColumns</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/*commom*/
+* {margin:0;padding:0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin: 0;padding: 0}
+address,caption,cite,code,dfn,em,strong,th,var,i {font-style: normal}
+table {	border-collapse: collapse;border-spacing: 0}
+caption,th {text-align: left}
+h1,h2,h3,h4,h5,h6 {font-size: 100%}
+input,select,textarea{outline:medium;}
+img,abbr,acronym,fieldset,input {border: 0}
+ul, li {list-style-image: none;list-style-type: none}
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
+body {font-family:"微软雅黑",Arial,"宋体"; font-size:12px; color:#000;text-align:center;-webkit-text-size-adjust :none;background-color:#eee;}
+a:link, a:visited {text-decoration: none;}
+.clear {clear:both;}
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clearfix { display:inline-block; }
+/* Hide from IE Mac */ 
+.clearfix {display:block;} 
+/* End hide from IE Mac */ /* end of clearfix */
+.hackbox{ display:table; }
+.sharebtn{clear:both;}
+
+/*header*/
+#header{height:100px;background:#eee;margin:0 auto;}
+#header div{width:1280px;margin:0 auto;}
+#header div img{height:36px;width:215px;display:block;padding-top:30px;*padding-top:0;padding-left:100px;*padding-left:60;float:none;*float:left;
+margin-left:0;*margin-left:39px;margin-top:0;*margin-top:50px;}
+.container{height:470px;background-color: #746daf;background: url(main.jpg) no-repeat center center;;overflow:hidden;}
+.inner{width:1280px;height:470px;margin:0 auto;}
+.computer{float:left;width:605px;height:414px;margin-left: 100px;margin-top:30px;background: url(computer.png) no-repeat;}
+.name, .psw{width:308px;color:#fff;float:right;margin-top:113px;border-bottom: 1px solid #fff;padding-bottom: 5px;}
+.psw{margin-top: 30px;}
+.name img, .psw img{display: block;float: left;margin-left:20px;}
+#loginForm{display:block;width:308px;float:right;margin-right:195px;}
+#loginError{color: #FFFFFF;position: absolute;margin-top: 75px;}
+input::-moz-placeholder { color: #FFFFFF; }
+input::-webkit-input-placeholder { color: #FFFFFF; }
+form input{background:none;color:#fff;font-size:16px;float: left;text-align: center;margin-top: 4px;width:250px;}
+form input.submit{background: #b7d535;height: 60px;width: 306px;border:#b7d535 solid 1px;float: right;margin-top: 60px;font-size: 24px;font-family:"微软雅黑",Arial,"宋体";cursor:pointer;}
+form input.submit:hover{background: #6dbd65;border:#e5f3e4 solid 1px;}
+#footer{height:65px;background:#eee;margin:0 auto;border:0;clear: both;}
+#footer p{color:#6a6a6a;padding-top: 24px;}

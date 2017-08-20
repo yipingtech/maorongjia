@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<!-- dao配置 -->
+     <bean id="bonusDao" class="cc.messcat.dao.finance.BonusDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     <bean id="ticketInfoDao" class="cc.messcat.dao.finance.TicketInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+
+ 	<!-- mgr配置 -->
+    <bean id="bonusManagerDao" class="cc.messcat.service.finance.BonusManagerDaoImpl">
+        <property name="bonusDao" ref="bonusDao"></property>
+         <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    <bean id="ticketInfoManagerDao" class="cc.messcat.service.finance.TicketInfoManagerDaoImpl">
+        <property name="ticketInfoDao" ref="ticketInfoDao"></property>
+        <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    
+    <!-- action配置 -->
+    <bean id="bonusAction" class="cc.messcat.web.finance.BonusAction" scope="prototype">
+         <property name="bonusManagerDao" ref="bonusManagerDao"></property>
+          <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    <bean id="ticketInfoAction" class="cc.messcat.web.finance.TicketInfoAction" scope="prototype">
+         <property name="ticketInfoManagerDao" ref="ticketInfoManagerDao"></property>
+          <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+
+</beans>

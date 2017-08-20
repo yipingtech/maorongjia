@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="false">
+	
+	<!-- 配置简单定时任务 begin-->
+	<!--
+	<bean id="counterJob"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>cc.modules.commons.MCCounter</value>
+		</property>
+	</bean>
+
+	<bean id="counterTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<ref bean="counterJob"/>
+		</property>
+		<property name="startDelay">
+			<value>1000</value>
+		</property>
+		<property name="repeatInterval">
+			<value>6000</value>
+		</property>
+	</bean>
+
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<ref bean="counterTrigger" />
+		</property>
+	</bean>
+	-->
+	<!-- 配置简单定时任务 end-->
+
+	<!-- 配置复杂定时任务 begin-->
+	<!-- <bean name="counterJob" class="cc.modules.commons.MCCounter" />
+
+	<bean id="methodInvokingJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="counterJob" />
+		</property>
+		<property name="targetMethod">
+			<value>schedule</value>
+		</property>
+	</bean>
+
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下
+		<property name="jobDetail">
+			<ref bean="methodInvokingJobDetail" />
+		</property>
+		每天的凌晨3点30分触发
+		<property name="cronExpression">
+			<value>0 30 03 * * ?</value>
+		</property>
+	</bean> -->
+
+	<!-- <bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cronTrigger" />
+			</list>
+		</property>
+	</bean> -->
+	<!-- 配置复杂定时任务 end-->
+	<!-- 配置复杂定时任务 begin自动确认收货-->
+	<bean name="Job" class="cc.modules.commons.AutomaticReceipt" >
+		<property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+	</bean>
+	<bean id="methodInvokingJobDetail2"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="Job" />
+		</property>
+		<property name="targetMethod">
+			<value>schedule</value>
+		</property>
+	</bean>
+
+	<bean id="cronTrigger2"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<!-- 这里不可以直接在属性jobDetail中引用taskJob，因为他要求的是一个jobDetail类型的对象，所以我们得通过MethodInvokingJobDetailFactoryBean来转一下 -->
+		<property name="jobDetail">
+			<ref bean="methodInvokingJobDetail2" />
+		</property>
+		<!-- 每天的0点01秒触发 -->
+		<property name="cronExpression">
+			<value>0 01 00 * * ?</value>
+			<!-- <value>0 0 15 * * ?</value> -->
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cronTrigger2" />
+			</list>
+		</property>
+	</bean>
+	<!-- 配置复杂定时任务 end-->
+
+</beans>

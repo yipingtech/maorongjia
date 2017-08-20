@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<!-- dao配置 -->
+     <bean id="productTypeDao" class="cc.messcat.dao.product.ProductTypeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     <bean id="attributeDao" class="cc.messcat.dao.product.AttributeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     <bean id="productAttrDao" class="cc.messcat.dao.product.ProductAttrDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     <bean id="stockDao" class="cc.messcat.dao.product.StockDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+
+ 	<!-- mgr配置 -->
+    <bean id="productTypeManagerDao" class="cc.messcat.service.product.ProductTypeManagerDaoImpl">
+        <property name="productTypeDao" ref="productTypeDao"></property>
+        <property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+        <property name="attributeManagerDao" ref="attributeManagerDao"></property>
+        <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    <bean id="attributeManagerDao" class="cc.messcat.service.product.AttributeManagerDaoImpl">
+        <property name="attributeDao" ref="attributeDao"></property>
+         <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    <bean id="productAttrManagerDao" class="cc.messcat.service.product.ProductAttrManagerDaoImpl">
+        <property name="productAttrDao" ref="productAttrDao"></property>
+         <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    <bean id="stockManagerDao" class="cc.messcat.service.product.StockManagerDaoImpl">
+        <property name="stockDao" ref="stockDao"></property>
+        <property name="productAttrDao" ref="productAttrDao"></property>
+         <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    
+    <!-- action配置 -->
+    <bean id="productTypeAction" class="cc.messcat.web.product.ProductTypeAction" scope="prototype">
+         <property name="productTypeManagerDao" ref="productTypeManagerDao"></property>
+         <property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+          <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    <bean id="attributeAction" class="cc.messcat.web.product.AttributeAction" scope="prototype">
+         <property name="attributeManagerDao" ref="attributeManagerDao"></property>
+         <property name="productTypeManagerDao" ref="productTypeManagerDao"></property>
+         <property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+         <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    <bean id="productAttrAction" class="cc.messcat.web.product.ProductAttrAction" scope="prototype">
+         <property name="productAttrManagerDao" ref="productAttrManagerDao"></property>
+          <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    <bean id="stockAction" class="cc.messcat.web.product.StockAction" scope="prototype">
+         <property name="stockManagerDao" ref="stockManagerDao"></property>
+          <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+
+</beans>

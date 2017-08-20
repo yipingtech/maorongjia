@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.codebehind.pathPrefix" value="/WEB-INF/jsp/" />
+	
+	<package name="ep_member" extends="struts-default" namespace="/member">
+		
+		<interceptors>
+			<interceptor name="authority" class="cc.modules.security.AuthorityIntercept">
+			</interceptor>
+			
+			<interceptor-stack name="author">
+				<interceptor-ref name="authority"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="author"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="login">/WEB-INF/jsp/index.jsp</result>
+		</global-results>
+		
+		<!-- 会员(后台) -->
+		<action name="memberAction" class="memberAction">
+			<result>/WEB-INF/jsp/enterprise/member/member.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/member_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/member_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/member_new.jsp</result>
+			<result name="threeMember">/WEB-INF/jsp/enterprise/member/threeMember.jsp</result>
+			<result name="edit_success" type="redirect">memberAction!queryAllMember.action</result>
+			<result name="record">/WEB-INF/jsp/enterprise/bonus/bonusRecord.jsp</result>
+			<result name="AllBonus">/WEB-INF/jsp/enterprise/bonus/allBonus.jsp</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+		<!-- 积分 -->
+		<action name="intergralInfoAction" class="intergralInfoAction">
+			<result>/WEB-INF/jsp/enterprise/member/intergralInfo.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/intergralInfo_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/intergralInfo_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/intergralInfo_new.jsp</result>
+			<result name="edit_success" type="redirect">intergralInfoAction!retrieveAllIntergralInfos.action</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+		<!-- 佣金 -->
+		<action name="commissionInfoAction" class="commissionInfoAction">
+			<result>/WEB-INF/jsp/enterprise/member/commissionInfo.jsp</result>
+			<result name="toCheckInfo">/WEB-INF/jsp/enterprise/member/all_commission.jsp</result>
+			<result name="toShow">/WEB-INF/jsp/enterprise/member/show_commissionInfo.jsp</result>
+			<result name="toCashInfo">/WEB-INF/jsp/enterprise/member/cashInfo.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/commissionInfo_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/commissionInfo_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/commissionInfo_new.jsp</result>
+			<result name="edit_success" type="redirect">commissionInfoAction!retrieveAllCommissionInfos.action</result>
+			<result name="deleteSuccess" type="redirect">commissionInfoAction!queryAllCashApplyBySeller.action</result>
+			<result name="cash_view">/WEB-INF/jsp/enterprise/member/cashInfo_view.jsp</result>
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+		<!-- 余额 -->
+		<action name="rechargeInfoAction" class="rechargeInfoAction">
+			<result>/WEB-INF/jsp/enterprise/member/rechargeInfo.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/rechargeInfo_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/rechargeInfo_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/rechargeInfo_new.jsp</result>
+			<result name="edit_success" type="redirect">rechargeInfoAction!retrieveAllRechargeInfos.action</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+		<!-- 签到 -->
+		<action name="reportInfoAction" class="reportInfoAction">
+			<result>/WEB-INF/jsp/enterprise/member/reportInfo.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/reportInfo_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/reportInfo_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/reportInfo_new.jsp</result>
+			<result name="edit_success" type="redirect">reportInfoAction!retrieveAllReportInfos.action</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>
+		
+		<!-- 配置 -->
+		<action name="parameterSetAction" class="parameterSetAction">
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/parameterSet_edit.jsp</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>
+		
+		<!-- 红包 -->
+		<action name="memberBonusAction" class="memberBonusAction">
+			<result>/WEB-INF/jsp/enterprise/member/memberBonus.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/member/memberBonus_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/member/memberBonus_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/member/memberBonus_new.jsp</result>
+			<result name="edit_success" type="redirect">memberBonusAction!retrieveAllMemberBonuss.action</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+		<!-- 评论 -->
+		<action name="evaluateAction" class="evaluateAction">
+			<result name="query_evaluate">/WEB-INF/jsp/enterprise/product/product_evaluate.jsp</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>		
+		
+		<!-- 积分规则 -->
+		<action name="integralRuleAction" class="integralRuleAction">
+			<result>/WEB-INF/jsp/enterprise/finance/integralRule.jsp</result>
+			<result name="viewPage">/WEB-INF/jsp/enterprise/finance/integralRule_view.jsp</result>
+			<result name="editPage">/WEB-INF/jsp/enterprise/finance/integralRule_edit.jsp</result>
+			<result name="newPage">/WEB-INF/jsp/enterprise/finance/integralRule_new.jsp</result>
+			<result name="edit_success" type="redirect">integralRuleAction!retrieveAllIntegralRules.action</result>
+			
+			<!-- 防止重复提交 -->
+            <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>
+           	<interceptor-ref name="author"></interceptor-ref>
+          	<interceptor-ref name="token">
+            	<!-- includeMethods表示包含指定的方法， 即对标记为includeMethods的方法进行拦截 -->
+                <param name="includeMethods">add,update</param>
+            	<!-- 定义被排除的方法名， 也就是你action中不被这个拦截器拦截的方法名 -->
+               	<param name="excludeMethods"></param>
+            </interceptor-ref>
+			
+		</action>	
+		
+	</package>	
+</struts>

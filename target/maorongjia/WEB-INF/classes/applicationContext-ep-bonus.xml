@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	<!-- dao配置 -->
+    <bean id="bonusRecordDao" class="cc.messcat.dao.bonus.BonusRecordDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+ 	<!-- mgr配置 -->
+    <bean id="bonusRecordManagerDao" class="cc.messcat.service.bonus.BonusRecordManagerDaoImpl">
+        <property name="bonusRecordDao" ref="bonusRecordDao"></property>
+        <property name="baseDao" ref="baseDao"></property>
+    </bean>
+    
+    <!-- action配置 -->
+    <bean id="bonusRecordAction" class="cc.messcat.web.bonus.BonusRecordAction" scope="prototype">
+         <property name="bonusRecordManagerDao" ref="bonusRecordManagerDao"></property>
+         <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+
+</beans>

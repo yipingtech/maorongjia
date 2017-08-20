@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	
+	<!-- dao配置 -->
+	<bean id="epNewsDao" class="cc.messcat.dao.collection.EpNewsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="mcProductInfoDao" class="cc.messcat.dao.collection.McProductInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="productColumnDao" class="cc.messcat.dao.collection.ProductColumnDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+	
+	<!-- mgr配置 -->
+	<bean id="epNewsManagerDao" class="cc.messcat.service.collection.EpNewsManagerDaoImpl">
+		<property name="epColumnDao" ref="epColumnDao"/>
+		<property name="epNewsDao" ref="epNewsDao"></property>
+		<property name="usersDao" ref="usersDao"></property>
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	<bean id="mcProductInfoManagerDao"
+		class="cc.messcat.service.collection.McProductInfoManagerDaoImpl">
+		<property name="mcProductInfoDao" ref="mcProductInfoDao"></property>
+		<property name="epColumnDao" ref="epColumnDao"></property>
+		<property name="productAttrDao" ref="productAttrDao"></property>
+		<property name="attributeDao" ref="attributeDao"></property>
+		<property name="stockDao" ref="stockDao"></property>
+		<property name="orderInfoDao" ref="orderInfoDao"></property>
+		<property name="cartInfoDao" ref="cartInfoDao"></property>
+		<property name="payOrderDao" ref="payOrderDao"></property>
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	<bean id="productColumnManagerDao" class="cc.messcat.service.collection.ProductColumnManagerDaoImpl">
+        <property name="productColumnDao" ref="productColumnDao"></property>
+        <property name="mcProductInfoDao" ref="mcProductInfoDao"></property>
+		<property name="epColumnDao" ref="epColumnDao"></property>
+		<property name="baseDao" ref="baseDao"></property>
+    </bean>
+	
+	<!-- action配置 -->
+    <bean id="epNewsAction" class="cc.messcat.web.collection.EpNewsAction" scope="prototype">
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+		<property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    <bean id="mcProductInfoAction" class="cc.messcat.web.collection.McProductInfoAction"
+		scope="prototype">
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="mcParameterManagerDao" ref="mcParameterManagerDao"></property>
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+		<property name="productTypeManagerDao" ref="productTypeManagerDao"></property>
+		<property name="attributeManagerDao" ref="attributeManagerDao"></property>
+		<property name="stockManagerDao" ref="stockManagerDao"></property> 
+		<property name="productAttrManagerDao" ref="productAttrManagerDao"></property>
+		<property name="baseManagerDao" ref="baseManagerDao"></property>
+		<property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+	</bean>
+	<bean id="productColumnAction" class="cc.messcat.web.collection.ProductColumnAction" scope="prototype">
+         <property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+         <property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		 <property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+</beans>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+	
+	<!-- action配置 -->
+    <bean id="epIndexAction" class="cc.messcat.web.front.EpIndexAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+		<property name="memberManagerDao" ref="memberManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+	
+	<bean id="epNewsListMoreAction" class="cc.messcat.web.front.EpNewsListMoreAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+	
+    <bean id="epNewsMoreAction" class="cc.messcat.web.front.EpNewsMoreAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+		
+    <bean id="epFrontNewsAction" class="cc.messcat.web.front.EpFrontNewsAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+	
+	<bean id="epProductAction" class="cc.messcat.web.front.EpProductAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="stockManagerDao" ref="stockManagerDao"></property>
+		<property name="productColumnManagerDao" ref="productColumnManagerDao"></property>
+		<property name="memberManagerDao" ref="memberManagerDao"></property>
+		<property name="evaluateManagerDao" ref="evaluateManagerDao"></property>
+		<property name="productAttrManagerDao" ref="productAttrManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+    	
+	<bean id="epOtherAction" class="cc.messcat.web.front.EpOtherAction" scope="prototype">
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>
+	
+	<!--EpMemberCenterAction的配置-->
+	<bean id="EpMemberCenterAction" class="cc.messcat.web.front.EpMemberCenterAction" scope="prototype">
+		<property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+		<property name="memberManagerDao" ref="memberManagerDao"></property>
+		<property name="orderInfoManagerDao" ref="orderInfoManagerDao"></property>
+		<property name="addressManagerDao" ref="addressManagerDao"></property>
+		<property name="provinceManagerDao" ref="provinceManagerDao"></property>
+        <property name="cityManagerDao" ref="cityManagerDao"></property>
+        <property name="areaManagerDao" ref="areaManagerDao"></property>
+		<property name="intergralInfoManagerDao" ref="intergralInfoManagerDao"></property>
+		<property name="productDrawbackManagerDao" ref="productDrawbackManagerDao"></property>
+		<property name="parameterSetManagerDao" ref="parameterSetManagerDao"></property>
+		<property name="memberBonusManagerDao" ref="memberBonusManagerDao"></property>
+		<property name="rechargeInfoManagerDao" ref="rechargeInfoManagerDao"></property>
+		<property name="evaluateManagerDao" ref="evaluateManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="ticketInfoManagerDao" ref="ticketInfoManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>	
+	
+	<!--EpShoppingCarAction的配置-->
+	<bean id="epShoppingCarAction" class="cc.messcat.web.front.EpShoppingCarAction" scope="prototype">
+		<property name="memberManagerDao" ref="memberManagerDao"></property>
+		<property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		<property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		<property name="epAdManagerDao" ref="epAdManagerDao"></property>
+		<property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+		<property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+		<property name="usersManagerDao" ref="usersManagerDao"></property>
+		<property name="standbyManagerDao" ref="standbyManagerDao"></property>
+		<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+		<property name="cartInfoManagerDao" ref="cartInfoManagerDao"></property>
+		<property name="stockManagerDao" ref="stockManagerDao"></property>
+		<property name="addressManagerDao" ref="addressManagerDao"></property>
+		 <property name="baseManagerDao" ref="baseManagerDao"></property>
+	</bean>
+      
+
+    <bean id="epPayAction" class="cc.messcat.web.front.EpPayAction" scope="prototype">
+    	<property name="addressManagerDao" ref="addressManagerDao"></property>
+    	<property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+    	<property name="orderInfoManagerDao" ref="orderInfoManagerDao"></property>
+    	<property name="memberManagerDao" ref="memberManagerDao"></property>
+    	 <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    
+    <bean id="memberFilter" class="cc.modules.security.MemberInit" scope="prototype">
+    	<property name="memberManagerDao" ref="memberManagerDao"></property>
+    	 <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    
+    <!-- 免费试穿活动 -->
+    <bean id="epActivityAction" class="cc.messcat.web.front.EpActivityAction" scope="prototype">
+    	<property name="activityInfoManagerDao" ref="activityInfoManagerDao"></property>
+    	<property name="mcProductInfoManagerDao" ref="mcProductInfoManagerDao"></property>
+    	<property name="addressManagerDao" ref="addressManagerDao"></property>
+    	<property name="payOrderManagerDao" ref="payOrderManagerDao"></property>
+    	<property name="orderInfoManagerDao" ref="orderInfoManagerDao"></property>
+    	<property name="memberManagerDao" ref="memberManagerDao"></property>
+    	<property name="evaluateManagerDao" ref="evaluateManagerDao"></property>
+    	<property name="parameterSetManagerDao" ref="parameterSetManagerDao"></property>
+    	 <property name="baseManagerDao" ref="baseManagerDao"></property>
+    </bean>
+    
+    
+    
+      
+</beans>

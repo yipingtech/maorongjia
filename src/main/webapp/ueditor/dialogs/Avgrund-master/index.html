@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Avgrund - A modal UI concept</title>
+
+		<meta name="description" content="A modal concept which aims to give a sense of depth between the page and modal layers">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="viewport" content="width=800, user-scalable=no">
+
+		<link href='http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/demo.css">
+		<link rel="stylesheet" href="css/avgrund.css">
+
+		<script language="javascript">
+			function openDialog() {
+				Avgrund.show( "#default-popup" );
+			}
+			function closeDialog() {
+				Avgrund.hide();
+			}
+		</script>
+
+	</head>
+
+	<body>
+
+		<aside id="default-popup" class="avgrund-popup">
+			<h2>That's all, folks</h2>
+			<p>
+				You can hit ESC or click outside to close the modal. Give it a go to see the reverse transition.
+			</p>
+			<p>
+				If you like this you would probably enjoy 
+               
+                <a href="javascript:;">Meny</a>, 
+                <a href="javascript:;">reveal.js</a> and 
+                <a href="javascript:;">stroll.js</a>.
+			</p>
+			<button onClick="javascript:closeDialog();">Close</button>
+		</aside>
+
+		<article class="avgrund-contents">
+			<h1>Avgrund</h1>
+			<p>
+				A modal concept which aims to give a sense of depth between the page and modal layers. Click the button below to give it a try.
+			</p>
+			<button onClick="javascript:openDialog();">Open Avgrund</button>
+			<p>
+				Uses CSS transforms to scale components and CSS filters to blur the page. Built for the fun of
+				it, not intended for any practical use.
+			</p>
+            
+			<p>
+				<em>Avgrund</em> is Swedish for abyss.
+			</p>
+
+			
+			</div-->
+		</article>
+
+		<div class="avgrund-cover"></div>
+
+		<script type="text/javascript" src="js/avgrund.js"></script>
+
+		
+
+	</body>
+</html>

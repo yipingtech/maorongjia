@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.codebehind.pathPrefix" value="/WEB-INF/jsp/" />
+	
+	<package name="ep_html" extends="struts-default"  namespace="/html">
+		<interceptors>
+			<interceptor name="authority" class="cc.modules.security.AuthorityIntercept">
+			</interceptor>
+			
+			<interceptor-stack name="author">
+				<interceptor-ref name="authority"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="author"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="login">/WEB-INF/jsp/index.jsp</result>
+		</global-results>
+		
+		<action name="enterpriseHtmlAction" class="enterpriseHtmlAction">
+			<result name="success">/WEB-INF/jsp/enterprise/html/epHtml.jsp</result>
+			<result name="do_success" type="redirect">enterpriseHtmlAction!updateExecute.action</result>
+			<result name="setHtml">/WEB-INF/jsp/enterprise/html/setHtml.jsp</result>
+		</action>
+
+	</package>	
+</struts>

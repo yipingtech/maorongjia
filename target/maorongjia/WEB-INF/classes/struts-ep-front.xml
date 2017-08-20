@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 大家不要在这里添加bean,而是自己多建立一个xml文件,然后添加进来
+		<constant name="struts.action.extension" value="do" />
+	 -->
+	<package name="front-ep" extends="struts-default" namespace="/">
+		
+		<default-interceptor-ref name="defaultStack"></default-interceptor-ref>
+		
+		<!-- 分发器  -->
+		<action name="navigation" class="cc.messcat.web.front.NavigationAction">
+			<!-- 带参数的例子： XXX.action?para1=${para1}&amp;para2=${para2}&amp;para3=${para3} -->
+			<result name="index" type="redirect">epIndexAction.htm</result>
+			<result name="news_list_more" type="redirect">
+				epNewsListMoreAction.htm?columnId=${columnId}&amp;pageType=${pageType}
+			</result>
+			<result name="news_more" type="redirect">
+				epNewsMoreAction.htm?columnId=${columnId}&amp;pageType=${pageType}
+			</result>
+			<result name="content" type="redirect">
+				epFrontNewsAction.htm?columnId=${columnId}&amp;pageType=${pageType}
+			</result>
+			<result name="news" type="redirect">
+				epFrontNewsAction.htm?newsId=${newsId}&amp;pageType=${pageType}&amp;fatherId=${fatherId}
+			</result>
+			<result name="product_list" type="redirect">
+				epProductAction.htm?columnId=${columnId}&amp;pageType=${pageType}
+			</result>
+			<result name="product" type="redirect">
+				epProductAction.htm?newsId=${newsId}&amp;pageType=${pageType}
+			</result>
+			<result name="other" type="redirect">
+				epOtherAction.htm?columnId=${columnId}&amp;pageType=${pageType}
+			</result>
+		</action>
+		
+		<!-- 主页  -->
+		<action name="epIndexAction" class="cc.messcat.web.front.EpIndexAction">
+		    <result type="redirect" name="redirectIndex">epIndexAction.htm?fatherId=${fatherId}</result>
+			<result name="index">/jsps/index.jsp</result>
+			<result name="brandProductList">/jsps/product-list.jsp</result>
+			<result name="productList">/jsps/product-list.jsp</result>
+			<result name="productClassify">/jsps/classify.jsp</result>
+			<result name="productClassify2">/jsps/classify2.jsp</result>
+		</action>
+		
+		<!-- 模块列表  -->
+		<action name="epNewsListMoreAction" class="epNewsListMoreAction">
+		    <result type="redirect" name="redirectNewsList">epNewsListMoreAction!newsList.action?fatherId=${fatherId}</result>
+			<result name="news_list_more">/jsps/news-list-more.jsp</result>
+			<result name="showcol" type="redirect">${colLink}</result>
+			<result name="newsList">/jsps/newsList.jsp</result>
+		</action>
+		
+		<!-- 新闻列表  -->
+		<action name="epNewsMoreAction" class="epNewsMoreAction">
+			<result name="news_more">/jsps/news-more.jsp</result>
+			<result name="picture">/jsps/picture.jsp</result>
+			<result name="webchat">/jsps/webchat-code.jsp</result>
+		</action>
+		
+		<!-- 单条新闻  -->
+		<action name="epFrontNewsAction" class="epFrontNewsAction">
+			<result name="news">/jsps/news.jsp</result>
+			<result name="linkUrl" type="redirect">${linkUrl}</result>
+		</action>
+		
+		<!-- 产品页面  -->
+		<action name="epProductAction" class="epProductAction">
+			<result name="product_list">/jsps/index.jsp</result>
+			<result name="product">/jsps/product-detail.jsp</result>
+			<result name="tampons">/jsps/tampons-detail.jsp</result>
+			<result name="productOneList">/jsps/shopping.jsp</result>
+		</action>
+		
+		<!-- 特殊页面  -->
+		<action name="epOtherAction" class="epOtherAction">
+			<result name="feedback">/jsps/feedback.jsp</result>
+		</action>
+		
+		<!-- 登陆 -->
+		<action name="loginAction" class="loginAction">
+			<result name="input">/WEB-INF/jsp/index.jsp</result>
+			<result name="success_enterprise">/WEB-INF/jsp/mainframe_enterprise.jsp</result>
+			<result>/WEB-INF/jsp/mainframe.jsp</result>
+			<result name="failure">/WEB-INF/jsp/index.jsp</result>
+		</action>	
+				
+		<!-- 会员(前端) -->
+		<action name="epMemberCenterAction" class="cc.messcat.web.front.EpMemberCenterAction">
+		    <result name="showRecharge">/jsps/recharge.jsp</result>
+		    <result type="redirect" name="toshowEditOrder" >epMemberCenterAction!showEditOrder.action</result>
+		    <result name="showEditOrder">/jsps/edit-order.jsp</result>
+		   	<result name="toOrder" type="redirect">epShoppingCarAction.htm?pageType=showCar&amp;addressId=${addressId}</result>
+		    <result type="redirect">epMemberCenterAction.action</result>
+		    <result type="redirect" name="findBankCardByMember2">epMemberCenterAction!findBankCardByMember.action?flag=${flag}</result>
+		    <result type="redirect" name="changeCard">epMemberCenterAction!applyDrawCash.action</result>
+		    <result name="findBankCardByMember">/jsps/card-list.jsp</result>
+		    <result name="queryCashRecord">/jsps/out_record.jsp</result>
+		    <result name="queryMoreRecord">/jsps/modules/moreCashRecord.jsp</result>
+		    <result name="queryMyAgentMore">/jsps/modules/myAgentMore.jsp</result>
+		    <result name="toChangeCard">/jsps/card-change.jsp</result>
+		    <result name="bankCardDetail">/jsps/bank_card.jsp</result>
+		    <result name="toEditCard">/jsps/edit_card.jsp</result>
+		    <result name="toAddCard">/jsps/add_card.jsp</result>
+			<result name="initMember">/jsps/vip-center.jsp</result>
+			<result name="viewMember">/jsps/my-account.jsp</result>
+			<result name="viewIntergra">/jsps/credit-detail.jsp</result>
+			<result name="noPayOrder">/jsps/order.jsp</result>
+			<result name="viewFather">/jsps/my-cash.jsp</result>
+			<result name="my-team">/jsps/my-team.jsp</result>
+			<result name="my-fans">/jsps/my-fans.jsp</result>
+			<result name="myHongBao">/jsps/my-hongbao.jsp</result>
+			<result name="toUpgrade">/jsps/vip-upgrade.jsp</result>
+			<result name="toBinkPhone">/jsps/upgrade-vip.jsp</result>
+			<result name="toRecharge">/jsps/vip-recharge.jsp</result>
+			<result name="toPacket">/jsps/red_packet.jsp</result>
+			<result name="toTicket">/jsps/shopping-ticket.jsp</result>
+			<result name="toPaticular">/jsps/vip-particular.jsp</result>
+			<result name="addPageAction" type="redirect">epMemberCenterAction!addAddress.action?productFlag2=${productFlag2}</result>
+			<result name="addPage">/jsps/add_address.jsp</result>
+			<result name="editPage">/jsps/edit_address.jsp</result>
+			<result name="toEditMenber">/jsps/revise-infor.jsp</result>
+			<result name="evaluate">/jsps/evaluate-product.jsp</result>
+			<result name="evaluate_success" type="redirect">epMemberCenterAction!allPayOrderByUser.action</result>
+			<result name="binding_success" type="redirect">epMemberCenterAction!viewMember.action</result>
+			<result name="giving_presents" type="redirect">epActivityAction!toBingGift.action</result>
+			<result name="toEditPhone">/jsps/change-phone-num.jsp</result>
+			<result name="toSureCash">/jsps/my-fenxiao(sure-cash).jsp</result>
+			<!-- <result name="toCashSuccess">/jsps/my-fenxiao(success).jsp</result> -->
+			<result name="toNewSuccess">/jsps/my-fenxiao(success).jsp</result>
+			<result name="toCashSuccess" type="redirect">epMemberCenterAction!commissionSuccess.action?id=${id}</result>
+			<result name="toVipPaticularIntro">/jsps/vip-paticular-intro.jsp</result>
+			<result name="resetPwd">/jsps/change-pay-password.jsp</result>
+			<result name="toProblem">/jsps/problem.jsp</result>
+			<result name="myAgent">/jsps/myagent.jsp</result>
+			<result name="generateQrcode">/jsps/erwei.jsp</result>
+			<result name="delete_success_font" type="redirect">epMemberCenterAction!noPayOrderByUser.action</result>
+		</action>	
+		
+		<!-- 活动(如试穿，送礼) -->
+		<action name="epActivityAction" class="cc.messcat.web.front.EpActivityAction">
+			<result name="toProductDetail">/jsps/free_try.jsp</result>
+			<result name="toGiftsColum">/jsps/give_gifts.jsp</result>
+			<result name="goGiftsColum">/jsps/product-detail.jsp</result>
+			<result name="toBindColum">/jsps/bindGifts.jsp</result>
+			<result name="drawGift">/jsps/drawGift.jsp</result>
+			<result name="toQueryFriend">/jsps/join-user.jsp</result>
+			<result name="toEditAddress">/jsps/add_address.jsp</result>
+			<result name="toPaySuccess">/jsps/succeed.jsp</result>
+			
+		</action>	
+
+		<!-- 检测验证码 -->
+		<action name="checkCodeAction" class="cc.messcat.web.system.CheckCodeAction">
+		</action>
+		
+		
+		<!-- 购物车 -->
+		<action name="epShoppingCarAction" class="epShoppingCarAction">
+			<result name="myCar">/jsps/myCart.jsp</result>
+			<result name="myCar2">/jsps/myCart2.jsp</result>
+			<result name="myCar3">/jsps/myCart3.jsp</result>
+			<result name="delete_success" type="redirect">epShoppingCarAction.htm?pageType=showCar</result>
+			<result name="delete_success2" type="redirect">epShoppingCarAction.htm?pageType=showCar2</result>
+			<result name="buyNow" type="redirect">epShoppingCarAction.htm?pageType=showCar</result>
+			<result name="login" type="redirect">epLoginAction.htm?pageType=toEpLogin</result>
+		</action>
+		
+		<!-- 支付 -->
+		<action name="epPayAction" class="epPayAction">
+			<result name="goPay">/jsps/alipayapi.jsp</result>
+			<result name="goPayByWeChat">/jsps/wechatpay.jsp</result>
+			<result name="afterPay" type="redirect">epMemberCenterAction.htm</result>
+			<result name="toPaySuccess">/jsps/succeed.jsp</result>
+			<result name="toPayFail">/jsps/failure.jsp</result>
+		</action>
+		
+		<action name="checkTokenAction" class="cc.messcat.wechat.weixin.popular.example.ReceiveServlet"></action>
+		<action name="payNotifyAction" class="payNotifyAction"></action>
+
+	</package>
+</struts>

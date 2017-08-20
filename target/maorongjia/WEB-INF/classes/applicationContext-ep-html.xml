@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	
+    <!-- action配置 -->
+    <bean id="enterpriseHtmlAction" class="cc.messcat.web.html.EpHtmlAction" scope="prototype">
+   		 <property name="epColumnManagerDao" ref="epColumnManagerDao"></property>
+   		 <property name="epLinksManagerDao" ref="epLinksManagerDao"></property>
+   		 <property name="epNewsManagerDao" ref="epNewsManagerDao"></property>
+   		 <property name="webSiteManagerDao" ref="webSiteManagerDao"></property>
+   		 <property name="webSkinManagerDao" ref="webSkinManagerDao"></property>
+   		 <property name="webSkinColorManagerDao" ref="webSkinColorManagerDao"></property>
+   		 <property name="epAdManagerDao" ref="epAdManagerDao"></property>
+   		 <property name="authoritiesManagerDao" ref="authoritiesManagerDao"></property>
+   		  <property name="baseManagerDao" ref="baseManagerDao"></property>
+   		 <!-- <property name="ftpUpload" ref="ftpUpload"></property> -->
+    </bean>
+    
+    <!-- <bean id="ftpUpload" class="cc.modules.util.FtpUpload" scope="prototype">
+    	<property name="ftpUrl" value="${ftpUrl}" />
+    	<property name="ftpPort" value="${ftpPort}" />
+    	<property name="ftpUser" value="${ftpUserName}" />
+    	<property name="ftpPassword" value="${ftpPassword}" />
+    	<property name="ftpWorkingDirectory" value="${ftpServerWorkingDirectory}" />
+    </bean> -->
+    
+</beans>

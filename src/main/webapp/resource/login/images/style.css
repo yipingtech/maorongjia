@@ -1,0 +1,129 @@
+
+@charset "utf-8";
+html{ font-family: '微软雅黑','playfair_display_scregular',STHeiTi, Arial,"微软雅黑",sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 62.5%;}
+html.ie8,html.ie7{font-size:14px;}
+body {min-height: 770px;position: relative; margin: 0; font-size:12px; line-height: 1.5; letter-spacing: 0.04em;color: #000; background-color: #f5f6f8;width: 100%;height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; font-family:"微软雅黑" ;}
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clearfix { display:inline-block; }
+/* Hide from IE Mac */
+.clearfix {display:block;}
+.hidden {display: none;}
+a{text-decoration: none;color: #fff}
+img{display: block;vertical-align: top; }
+
+/*头部*/
+
+/*登录区域*/
+.container{width: 500px;height: 578px;margin: 0 auto;font-size: 14px;position: relative;z-index: 10;margin-top: -244px;
+
+}
+
+.container_wrap{
+	box-shadow: 0px 2px 5px 2px rgba(0,0,0,.05);height: 420px;
+	-webkit-box-shadow: 0px 2px 5px 2px rgba(0,0,0,.05);height: 420px;
+	-moz-box-shadow: 0px 2px 5px 2px rgba(0,0,0,.05);height: 420px;
+	-ms-box-shadow: 0px 2px 5px 2px rgba(0,0,0,.05);height: 420px;
+	-o-box-shadow: 0px 2px 5px 2px rgba(0,0,0,.05);height: 420px;	
+}
+.logoin{
+	width: 420px;margin: 0 auto;
+}
+.input {margin-top:40px;
+	border: 1px solid #bcbcbc;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+}
+.input input{  color: #989393;}
+/*.input label{display: block;height: 29px;color: #494343;}*/
+.input input{margin:0 auto;font-size: 18px;width: 350px;line-height: 60px;height:60px;font-family:"微软雅黑";border: none;padding-left: 5px;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+}
+.verification input{width: 100px;}
+.verification img{vertical-align: middle;margin-left: 16px;width: 70px;height: 38px;}
+/*.verification img{width: 70px;height: 38px;border-radius: 2px}*/
+.button{margin-top: 40px;width: 420px;height: 60px;background-color: #e5007d;text-align: center;
+		border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	font-family:"微软雅黑";
+
+}
+.button_h{
+	font-family:"微软雅黑";
+	margin-top: 40px;width: 420px;height: 60px;background-color: #da6e6e;text-align: center;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+
+}
+.logoin-button{cursor: pointer;display: inline-block;width: 100%;line-height: 60px;color: #fff; font-size: 24px;}
+
+
+/*页脚*/
+.login-footer p{font-size: 14px;text-align: center;color: #9c9c9c;padding: 0;margin: 0;}
+
+/*错误出错*/
+.page-error{position: absolute;top: 50%;margin-top: -180px;height: 360px;width: 100%;text-align: center;color: #2173b4}
+.page-error h1{margin-top: 86px;margin-bottom: 28px;font-size: 48px;line-height: 46px;}
+.page-error p{margin: 0;padding: 0;margin-bottom: 70px;font-size: 24px;line-height: 24px;}
+.bg-orange{background-color: #206fad}
+.bg-blue{background-color: #f85800}
+.e-button{display:inline-block;font-size: 15px;line-height: 35px;font-weight: bold;width: 105px;height: 35px;margin-left: 15px;border: 1px solid;border-radius: 6px;}
+
+
+
+
+.login-header{
+	height: 432px;width: 100%;
+	background: #e5007d;
+	background-image: url(light-wool.png);
+}
+
+.account-error{
+	background: url(tips.png) no-repeat ;width: 158px;height: 43px;line-height: 43px;text-indent: 30px;color: #ba61a6;font-size: 18px;position: absolute;top:295px;left:471px;
+
+}
+.password-error{
+	background: url(tips.png) no-repeat ;width: 158px;height: 43px;line-height: 43px;text-indent: 30px;color: #ba61a6;font-size: 18px;position: absolute;top:395px;left:471px;
+
+}
+
+
+/* hemdyo */
+.header{
+	background: #da8181;height: 432px;width: 100%;
+}
+.name{
+	font-size: 30px;color: #dadada;width: 500px;height: 86px;line-height: 86px;text-indent: 40px;background: #da6e6e;margin-top: 18px;
+}
+.container_img>img{
+	margin: 0 auto;
+}
+.container_add{
+	margin-top: -163px
+}
+.account-error_h{
+	width: 158px;height: 43px;line-height: 43px;text-indent: 30px;color: #da8181;font-size: 18px;position: absolute;top:210px;left:471px;
+
+}
+.password-error_h{
+	width: 158px;height: 43px;line-height: 43px;text-indent: 30px;color: #da8181;font-size: 18px;position: absolute;top:310px;left:471px;
+
+}
+
+.icon{
+	display: inline-block;margin:14px 15px;
+}
+
