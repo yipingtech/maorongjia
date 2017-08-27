@@ -17,11 +17,19 @@
     
     <link rel="icon" href="favicon.ico"><!--客户有需要时添加，ico图标-->
     
-    <title>百丽春</title>
+    <title>猫融家社区</title>
     <link rel="stylesheet" type="text/css" href="${imagePath}/weui.min.css">
     <link rel="stylesheet" type="text/css" href="${imagePath}/jquery-weui.css">
     <link rel="stylesheet" type="text/css" href="${imagePath}/bill-style.css?v=1.1">
     <script src="${jsPath}/swiper.min.js"></script>
+  
+  <!-- 猫融家开始 -->  
+    <link href="${imagePath}/maorongjia/reset.css" rel="stylesheet" type="text/css" />
+	<link href="${imagePath}/maorongjia/flexslide.css" rel="stylesheet" type="text/css" />
+	<link href="${imagePath}/maorongjia/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="${jsPath}/maorongjia/jquery-min.js"></script>
+	<script type="text/javascript" src="${jsPath}/maorongjia/fleslider.js"></script>
+	<script type="text/javascript" src="${jsPath}/maorongjia/main.js"></script>
     
 
 </head>
