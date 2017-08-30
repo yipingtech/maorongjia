@@ -26,10 +26,10 @@
 			<result name="input">/WEB-INF/jsp/enterprise/collection/epNews.jsp</result>
 			<result name="do_failure">/WEB-INF/jsp/enterprise/collection/epNews.jsp</result>
 			<result name="do_success" type="redirect">epNewsAction.action</result>
-			<result name="add_page">/WEB-INF/jsp/enterprise/collection/epNews_new.jsp</result>
-			<result name="edit">/WEB-INF/jsp/enterprise/collection/epNews_edit.jsp</result>
+			<result name="add_page">/WEB-INF/jsp/enterprise/collection/ganhuo_new.jsp</result>
+			<result name="edit">/WEB-INF/jsp/enterprise/collection/ganhuo_edit.jsp</result>
 			<result>/WEB-INF/jsp/enterprise/collection/epNews.jsp</result>
-			<result name="view">/WEB-INF/jsp/enterprise/collection/epNews_view.jsp</result>
+			<result name="view">/WEB-INF/jsp/enterprise/collection/ganhuo_view.jsp</result>
 			
 			<!-- 防止重复提交 -->
             <result name="invalid.token">/WEB-INF/jsp/error_double_click.jsp</result>

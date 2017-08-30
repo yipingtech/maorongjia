@@ -72,10 +72,20 @@ $(document).ready(function(){
 <section id="container">
 <c:if test="${enterpriseNews.isOnlyContent==0}">
     <section class="soft-text-detail-wrap">
-        <%-- <section class="detail-top">
-            <h3>${enterpriseNews.title}</h3>
-            <p><fmt:formatDate value="${enterpriseNews.editeTime}" pattern="yyyy-MM-dd"/><a href="epNewsMoreAction!webchat.action">谐达</a></p>
-        </section> --%>
+        <section class="detail-top" style="border-bottom:1px dotted #CCC;padding: 8px 10px 10px">
+            <h3 id="activity-name">${enterpriseNews.title}</h3>
+            <p id="post-date"><fmt:formatDate value="${enterpriseNews.editeTime}" pattern="yyyy-MM-dd"/> 阅读:${enterpriseNews.clickTimes}次</p>
+        </section>
+      <%--   <div class="page-bizinfo">
+		<div class="header">
+		<h1 id="activity-name">${enterpriseNews.title}</h1>
+		<span id="post-date">
+			<span><fmt:formatDate value="${enterpriseNews.editeTime}" pattern="yyyy-MM-dd"/></span>
+			<span></span>
+			<span>阅读:${enterpriseNews.clickTimes}次</span>
+		</span>
+	</div>
+</div> --%>
         <section class="detail-info">
             <section>
 <%--             <h3>${enterpriseNews.title}</h3> --%>

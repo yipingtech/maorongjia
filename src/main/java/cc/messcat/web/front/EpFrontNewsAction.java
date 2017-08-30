@@ -88,7 +88,7 @@ public class EpFrontNewsAction extends FrontAction {
 	 * @return
 	 * @throws Exception
 	 */
-	private String news() throws Exception {
+	public String news() throws Exception {
 
 		// 前台传过来的新闻ID
 		if (super.selectNewsId == null) {

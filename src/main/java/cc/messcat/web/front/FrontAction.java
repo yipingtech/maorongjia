@@ -194,6 +194,7 @@ public class FrontAction extends PageAction {
 				}
 			}
 		}
+		System.out.println(((IndexInfoBean)map.get("WanDai")).getEnterprisePhotoNewsList().size());
 	}
 	
 	/**

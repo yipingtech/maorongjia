@@ -37,13 +37,13 @@
 		<ul class="cl">
 			<li>
 				<a href="">
-					<span class="rz-txt"><font class="r-txt">信用卡</font><br><font>现有5折优惠</font></span>
+					<span class="rz-txt"><font class="r-txt">信用卡</font><br><font>干货</font></span>
 					<span class="rz-pic"><img src="${imagePath}/maorongjia/mx_tab1.png"></span>
 				</a>
 			</li>
 			<li>
 				<a href="">
-					<span class="rz-txt"><font class="y-txt">贷款</font><br><font>贷款新方式</font></span>
+					<span class="rz-txt"><font class="y-txt">贷款</font><br><font>干货</font></span>
 					<span class="rz-pic"><img src="${imagePath}/maorongjia/mx_tab2.png"></span>
 				</a>
 			</li>
@@ -57,7 +57,29 @@
 		</div>
 		<div class="news-list">
 			<ul>
-				<li>
+				<c:forEach var="hot" items="${map.WanDai.enterprisePhotoNewsList}" begin="0" end="5">
+							<li>
+								<div class="n-pic"><a href="epFrontNewsAction!news.action?selectNewsId=${hot.id}"><img src="${uploadPath}/${hot.photo}"></a></div>
+								<div class="auto">
+									<div class="tit">
+										<a href="epFrontNewsAction!news.action?selectNewsId=${hot.id}" title="">
+											<c:if test="${fn:length(hot.title)<=11}">${hot.title }</c:if>
+											<c:if test="${fn:length(hot.title)>11}">${fn:replace(hot.title,fn:substring(hot.title,11,fn:length(hot.title)),"...")}</c:if>
+										</a>
+									</div>
+									<div class="desc">
+										<c:if test="${fn:length(hot.shortMeta)<=30}">${hot.shortMeta }</c:if>
+										<c:if test="${fn:length(hot.shortMeta)>30}">${fn:replace(hot.shortMeta,fn:substring(hot.shortMeta,30,fn:length(hot.shortMeta)),"...")}</c:if>
+									</div>
+									<div class="meta">
+										<span class="pl-ico">${hot.clickTimes}</span>
+										<span class="t-ico"><fmt:formatDate value="${hot.editeTime}" pattern="yyyy-MM-dd"/></span>
+									</div>
+								</div>	
+							</li>
+				</c:forEach>
+			
+				<%-- <li>
 					<div class="n-pic"><a href=""><img src="${imagePath}/maorongjia/news1.jpg"></a></div>
 					<div class="auto">
 						<div class="tit"><a href="" title="">“金融科技”将对传统银行影响</a></div>
@@ -67,29 +89,7 @@
 							<span class="t-ico">2016-07-17</span>
 						</div>
 					</div>
-				</li>
-				<li>
-					<div class="n-pic"><a href=""><img src="${imagePath}/maorongjia/news2.jpg"></a></div>
-					<div class="auto">
-						<div class="tit"><a href="" title="">“金融科技”将对传统银行影响</a></div>
-						<div class="desc">金融科技与互联网金融之间或许还在玩着概念消灭概念的游戏，银行</div>
-						<div class="meta">
-							<span class="pl-ico">227</span>
-							<span class="t-ico">2016-07-17</span>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="n-pic"><a href=""><img src="${imagePath}/maorongjia/news3.jpg"></a></div>
-					<div class="auto">
-						<div class="tit"><a href="" title="">“金融科技”将对传统银行影响</a></div>
-						<div class="desc">金融科技与互联网金融之间或许还在玩着概念消灭概念的游戏，银行</div>
-						<div class="meta">
-							<span class="pl-ico">227</span>
-							<span class="t-ico">2016-07-17</span>
-						</div>
-					</div>
-				</li>
+				</li> --%>
 			</ul>
 		</div>
 	</div>

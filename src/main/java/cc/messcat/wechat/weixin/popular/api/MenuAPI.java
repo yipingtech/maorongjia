@@ -193,7 +193,7 @@ public class MenuAPI extends BaseAPI {
 		String url10 = URLEncoder.encode(Constants.WEBSITE_URL + "/epIndexAction!contactUs.action", "UTF-8");
 		/*childBtn11.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + Constants.APPID + "&redirect_uri=" + url10
 			+ "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");*/
-		childBtn11.setUrl("http://www.szblc.com");
+		childBtn11.setUrl("http://www.yipingtech.com");
 
 		MenuButtons.Button mainBtn3 = new MenuButtons.Button();
 		mainBtn3.setName("关于我们");

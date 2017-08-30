@@ -788,5 +788,8 @@ public class EpNewsAction extends PageAction {
 	public void setUploadImageFileName(String uploadImageFileName) {
 		this.uploadImageFileName = uploadImageFileName;
 	}
+	
+	
+	
 
 }
